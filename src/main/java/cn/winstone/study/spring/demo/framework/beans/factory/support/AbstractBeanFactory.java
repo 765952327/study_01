@@ -23,7 +23,20 @@ public abstract class AbstractBeanFactory
 		return createBean(name, beanDefinition);
 	}
 
+	@Override
+	public Object getBean(String name, Object... args) throws BeansException {
+		Object bean = getSingleton(name);
+		if (bean != null) {
+			return bean;
+		}
+
+		BeanDefinition beanDefinition = getBeanDefinition(name);
+		return createBeanInstance(beanDefinition, name, args);
+	}
+
 	protected abstract BeanDefinition getBeanDefinition(String beanName) throws BeansException;
 
-	protected abstract Object createBean(String beanName,BeanDefinition beanDefinition) throws BeansException;
+	protected abstract Object createBean(String beanName, BeanDefinition beanDefinition) throws BeansException;
+
+	protected abstract Object createBeanInstance(BeanDefinition beanDefinition, String beanName, Object[] args) throws BeansException;
 }
