@@ -3,6 +3,7 @@ package cn.winstone.study.spring.demo;
 
 import cn.winstone.study.spring.demo.framework.beans.factory.config.BeanDefinition;
 import cn.winstone.study.spring.demo.framework.beans.factory.BeanFactory;
+import cn.winstone.study.spring.demo.framework.beans.factory.support.DefaultListableBeanFactory;
 import cn.winstone.study.spring.demo.service.UserService;
 import org.junit.Test;
 
@@ -15,10 +16,9 @@ public class SpringDemoTest{
 	@Test
 	public void test_beanFactory() {
 		// 1、初始化BeanFactory
-		BeanFactory beanFactory = new BeanFactory();
+		DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
 		// 2、注册Bean
-		BeanDefinition beanDefinition = new BeanDefinition();
-		beanDefinition.setBean(new UserService());
+		BeanDefinition beanDefinition = new BeanDefinition(UserService.class);
 		beanFactory.registerBeanDefinition(UserService.class.getSimpleName(), beanDefinition);
 
 		// 3、获取Bean

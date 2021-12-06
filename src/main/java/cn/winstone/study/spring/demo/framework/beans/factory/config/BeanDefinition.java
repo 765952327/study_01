@@ -7,13 +7,17 @@ package cn.winstone.study.spring.demo.framework.beans.factory.config;
  * @date 2021/12/5 - 9:48 下午
  */
 public class BeanDefinition{
-	private Object bean;
+	private Class<?> beanClass;
 
-	public Object getBean() {
-		return bean;
+	public BeanDefinition(Class<?> beanClass) {
+		this.beanClass = beanClass;
 	}
 
-	public void setBean(Object bean) {
-		this.bean = bean;
+	public Class<?> getBeanClass() {
+		return beanClass;
+	}
+
+	public void setBeanClass(Class<?> beanClass) {
+		this.beanClass = beanClass;
 	}
 }
